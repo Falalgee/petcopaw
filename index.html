@@ -13,6 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..500,0..1,-25..0" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
 tailwind.config = {
   theme: {
@@ -30,7 +31,9 @@ tailwind.config = {
         'gold': '#785a00',
         'gold-soft': '#ffdf9b',
         'gold-ink': '#251a00',
-        'err': '#ba1a1a'
+        'err': '#ba1a1a',
+        'hairline': 'rgba(50, 23, 15, 0.08)',
+        'hairline-strong': 'rgba(50, 23, 15, 0.16)'
       },
       fontFamily: {
         'display': ['"Playfair Display"', 'Georgia', 'serif'],
@@ -73,10 +76,8 @@ tailwind.config = {
   p { margin: 0; text-wrap: pretty; }
   a { color: inherit; }
 
-  /* Section anchors */
   section[id], [id="top"] { scroll-margin-top: 5rem; }
 
-  /* Type system */
   .eyebrow { font-family: var(--font-sans); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
   .h1 { font-family: var(--font-display); font-size: clamp(2.25rem, 5.5vw, 3.75rem); line-height: 1.05; letter-spacing: -0.028em; font-weight: 500; color: var(--choc-deep); }
   .h2 { font-family: var(--font-display); font-size: clamp(1.75rem, 3.5vw, 2.5rem); line-height: 1.14; letter-spacing: -0.02em; font-weight: 500; color: var(--choc-deep); }
@@ -89,7 +90,6 @@ tailwind.config = {
   .num { font-family: var(--font-display); font-feature-settings: "lnum", "tnum"; font-variant-numeric: lining-nums tabular-nums; }
   .mono { font-family: var(--font-mono); font-size: 12px; font-variant-numeric: tabular-nums; letter-spacing: 0; }
 
-  /* Layout */
   .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
   @media (min-width: 768px) { .container { padding: 0 40px; } }
   .section { padding: 80px 0; }
@@ -97,7 +97,6 @@ tailwind.config = {
   .section-tight { padding: 64px 0; }
   @media (min-width: 768px) { .section-tight { padding: 96px 0; } }
 
-  /* Buttons */
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
     height: 40px; padding: 0 16px; border-radius: 6px;
@@ -114,16 +113,10 @@ tailwind.config = {
   .btn-primary:hover:not(:disabled) { background: var(--choc-deep); }
   .btn-secondary { background: transparent; color: var(--choc-deep); border-color: var(--hairline-strong); }
   .btn-secondary:hover:not(:disabled) { background: rgba(50, 23, 15, 0.03); border-color: var(--choc-deep); }
-  .btn-tertiary { background: transparent; color: var(--choc-deep); padding: 0 4px; }
-  .btn-tertiary:hover:not(:disabled) { color: var(--choc); }
   .btn .material-symbols-outlined { font-size: 18px; }
 
-  /* Cards */
   .card { background: var(--white); border: 1px solid var(--hairline); border-radius: 12px; }
-  .card-hover { transition: border-color 120ms var(--ease), transform 120ms var(--ease); }
-  .card-hover:hover { border-color: var(--hairline-strong); }
 
-  /* Inputs */
   .input, .select, .textarea {
     width: 100%; height: 44px; padding: 0 14px; border-radius: 6px;
     background: var(--cream-low); border: 1px solid transparent;
@@ -138,11 +131,6 @@ tailwind.config = {
   .textarea { height: auto; padding: 12px 14px; resize: none; line-height: 1.55; }
   .select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%238a7d78' stroke-width='1.5' d='M1 1l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
 
-  /* Hairline */
-  .hairline { border-color: var(--hairline); }
-  .hairline-strong { border-color: var(--hairline-strong); }
-
-  /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     html { scroll-behavior: auto; }
@@ -151,8 +139,7 @@ tailwind.config = {
 </head>
 <body class="bg-cream text-ink font-sans antialiased">
 
-<!-- ============ HEADER ============ -->
-<header class="fixed top-0 inset-x-0 z-50 bg-cream/90 backdrop-blur-md border-b border-[rgba(50,23,15,0.06)]">
+<header class="fixed top-0 inset-x-0 z-50 bg-cream/90 backdrop-blur-md border-b border-hairline">
   <div class="container h-16 md:h-[72px] flex items-center justify-between gap-4">
     <a href="#top" class="flex items-center gap-2.5 group">
       <span class="w-8 h-8 rounded-md bg-choc text-gold-soft flex items-center justify-center transition-transform duration-200 group-hover:scale-[1.03]">
@@ -165,16 +152,16 @@ tailwind.config = {
     </a>
 
     <nav class="hidden lg:flex items-center gap-1">
-      <a href="#gap" class="px-3 py-2 rounded-md text-[13px] font-medium text-ink-soft hover:text-choc-deep hover:bg-cream-low transition-colors duration-120">The Gap</a>
-      <a href="#how" class="px-3 py-2 rounded-md text-[13px] font-medium text-ink-soft hover:text-choc-deep hover:bg-cream-low transition-colors duration-120">How It Works</a>
-      <a href="#fees" class="px-3 py-2 rounded-md text-[13px] font-medium text-ink-soft hover:text-choc-deep hover:bg-cream-low transition-colors duration-120">Fees</a>
-      <a href="#faq" class="px-3 py-2 rounded-md text-[13px] font-medium text-ink-soft hover:text-choc-deep hover:bg-cream-low transition-colors duration-120">FAQ</a>
-      <a href="#contact" class="px-3 py-2 rounded-md text-[13px] font-medium text-ink-soft hover:text-choc-deep hover:bg-cream-low transition-colors duration-120">Contact</a>
+      <a href="#gap" class="px-3 py-2 rounded-md text-[13px] font-medium text-ink-soft hover:text-choc-deep hover:bg-cream-low transition-colors">The Gap</a>
+      <a href="#how" class="px-3 py-2 rounded-md text-[13px] font-medium text-ink-soft hover:text-choc-deep hover:bg-cream-low transition-colors">How It Works</a>
+      <a href="#fees" class="px-3 py-2 rounded-md text-[13px] font-medium text-ink-soft hover:text-choc-deep hover:bg-cream-low transition-colors">Fees</a>
+      <a href="#faq" class="px-3 py-2 rounded-md text-[13px] font-medium text-ink-soft hover:text-choc-deep hover:bg-cream-low transition-colors">FAQ</a>
+      <a href="#contact" class="px-3 py-2 rounded-md text-[13px] font-medium text-ink-soft hover:text-choc-deep hover:bg-cream-low transition-colors">Contact</a>
     </nav>
 
     <div class="flex items-center gap-2">
       <a href="#intake" class="hidden sm:inline-flex btn btn-primary btn-sm">Start Your Search</a>
-      <button id="menuBtn" class="lg:hidden w-10 h-10 rounded-md flex items-center justify-center text-ink-soft hover:bg-cream-low transition-colors duration-120" aria-label="Open menu" aria-expanded="false">
+      <button id="menuBtn" class="lg:hidden w-10 h-10 rounded-md flex items-center justify-center text-ink-soft hover:bg-cream-low transition-colors" aria-label="Open menu" aria-expanded="false">
         <span class="material-symbols-outlined">menu</span>
       </button>
     </div>
@@ -194,7 +181,6 @@ tailwind.config = {
 
 <main id="top" class="pt-16 md:pt-[72px]">
 
-<!-- ============ HERO ============ -->
 <section class="relative overflow-hidden">
   <div class="container py-16 md:py-24 lg:py-28 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
     <div class="lg:col-span-7 flex flex-col gap-6">
@@ -219,15 +205,12 @@ tailwind.config = {
     <div class="lg:col-span-5 flex justify-center lg:justify-end">
       <div class="w-full max-w-[340px]">
         <div class="card p-4 shadow-[0_1px_2px_rgba(50,23,15,0.04),0_8px_24px_-12px_rgba(50,23,15,0.10)]">
-          <div class="flex items-center justify-between pb-3 border-b hairline">
+          <div class="flex items-center justify-between pb-3 border-b border-hairline">
             <span class="eyebrow">Sourcing dossier</span>
             <span class="mono text-ink-muted">PCP-2026</span>
           </div>
-          <div class="mt-4 aspect-[4/5] rounded-md bg-cream-low border hairline flex items-center justify-center">
-            <div class="flex flex-col items-center gap-2 text-ink-muted">
-              <span class="material-symbols-outlined text-[24px]">photo_camera</span>
-              <span class="text-[10px] uppercase tracking-[0.16em] font-semibold">Photo forthcoming</span>
-            </div>
+          <div class="mt-4 aspect-[4/5] rounded-md bg-cream-low border border-hairline overflow-hidden">
+            <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793888037/IMG-20261105-WA0054_initmq.jpg" alt="Petcopaw sourcing specialist with parrots" class="w-full h-full object-cover" loading="lazy"/>
           </div>
           <dl class="mt-4 flex flex-col gap-2.5 text-[12px]">
             <div class="flex justify-between gap-3">
@@ -250,25 +233,17 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ============ THE GAP ============ -->
-<section id="gap" class="section bg-cream-low border-t hairline">
+<section id="gap" class="section bg-cream-low border-t border-hairline">
   <div class="container">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
       <div class="lg:col-span-5 flex flex-col gap-3">
         <span class="eyebrow">The gap we bridge</span>
-        <h2 class="h2">
-          Being a legitimate seller does not mean being the <span class="italic text-choc">right</span> seller.
-        </h2>
+        <h2 class="h2">Being a legitimate seller does not mean being the <span class="italic text-choc">right</span> seller.</h2>
       </div>
       <div class="lg:col-span-7 flex flex-col gap-6">
-        <p class="body text-[16px] leading-[1.7]">
-          Buyers may not know which sellers truly specialize in the breed they want, what questions to ask, or who will take responsibility when promises are not kept. A seller may be legitimate and experienced with one breed — but that does not automatically make them the right source for another.
-        </p>
-        <p class="body text-[16px] leading-[1.7]">
-          Someone known for Rottweilers may not be the right specialist to source a Pomeranian. Buyers can overlook that difference and may encounter delayed delivery, poor communication, broken promises, misleading representations, or limited follow-through.
-        </p>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-6 pt-4 border-t hairline">
+        <p class="body text-[16px] leading-[1.7]">Buyers may not know which sellers truly specialize in the breed they want, what questions to ask, or who will take responsibility when promises are not kept. A seller may be legitimate and experienced with one breed — but that does not automatically make them the right source for another.</p>
+        <p class="body text-[16px] leading-[1.7]">Someone known for Rottweilers may not be the right specialist to source a Pomeranian. Buyers can overlook that difference and may encounter delayed delivery, poor communication, broken promises, misleading representations, or limited follow-through.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-6 pt-4 border-t border-hairline">
           <div class="flex flex-col gap-2">
             <span class="num text-[28px] text-gold/40 leading-none">01</span>
             <span class="h3 text-[14px]">Breed blind spots</span>
@@ -290,15 +265,13 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ============ WHAT WE DO ============ -->
-<section class="section border-t hairline">
+<section class="section border-t border-hairline">
   <div class="container flex flex-col gap-12">
     <div class="max-w-[640px] flex flex-col gap-3">
       <span class="eyebrow">What Petcopaw does</span>
       <h2 class="h2">A calm, informed path from request to introduction.</h2>
       <p class="lede">We listen to what the buyer is actually looking for, use our experience to understand the request, and help connect the buyer with a source whose experience and specialization are better suited to that particular need.</p>
     </div>
-
     <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-10 pt-2">
       <div class="flex flex-col gap-4">
         <div class="flex items-center gap-3">
@@ -311,7 +284,6 @@ tailwind.config = {
         </div>
         <p class="body">The pet, breed, expectations, and needs behind the request — captured before any recommendation is made.</p>
       </div>
-
       <div class="flex flex-col gap-4">
         <div class="flex items-center gap-3">
           <span class="num text-[36px] text-gold/30 leading-none">02</span>
@@ -323,7 +295,6 @@ tailwind.config = {
         </div>
         <p class="body">Identify a suitable source based on relevant experience and specialization — not simply whoever has a pet available.</p>
       </div>
-
       <div class="flex flex-col gap-4">
         <div class="flex items-center gap-3">
           <span class="num text-[36px] text-gold/30 leading-none">03</span>
@@ -339,37 +310,35 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ============ HOW IT WORKS ============ -->
-<section id="how" class="section bg-cream-low border-t hairline">
+<section id="how" class="section bg-cream-low border-t border-hairline">
   <div class="container flex flex-col gap-12">
     <div class="max-w-[560px] flex flex-col gap-3">
       <span class="eyebrow">How it works</span>
       <h2 class="h2">Four clear steps, no guessing.</h2>
     </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l hairline">
-      <div class="p-6 md:p-8 border-r border-b hairline flex flex-col gap-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-hairline">
+      <div class="p-6 md:p-8 border-r border-b border-hairline flex flex-col gap-3">
         <div class="flex items-baseline gap-3">
           <span class="num text-[28px] text-gold/40 leading-none">01</span>
           <h3 class="h3">Tell us what you want.</h3>
         </div>
         <p class="body">Share the breed or type of pet, your expectations, location, timing, and any questions through the inquiry form.</p>
       </div>
-      <div class="p-6 md:p-8 border-r border-b hairline flex flex-col gap-3">
+      <div class="p-6 md:p-8 border-r border-b border-hairline flex flex-col gap-3">
         <div class="flex items-baseline gap-3">
           <span class="num text-[28px] text-gold/40 leading-none">02</span>
           <h3 class="h3">We assess the request.</h3>
         </div>
         <p class="body">We use our industry knowledge and relationships to understand what kind of source and experience may be appropriate.</p>
       </div>
-      <div class="p-6 md:p-8 border-r border-b hairline flex flex-col gap-3">
+      <div class="p-6 md:p-8 border-r border-b border-hairline flex flex-col gap-3">
         <div class="flex items-baseline gap-3">
           <span class="num text-[28px] text-gold/40 leading-none">03</span>
           <h3 class="h3">We make a recommendation.</h3>
         </div>
         <p class="body">If we can recommend a suitable breeder for the requested breed, we provide the recommendation and contact information.</p>
       </div>
-      <div class="p-6 md:p-8 border-r border-b hairline flex flex-col gap-3">
+      <div class="p-6 md:p-8 border-r border-b border-hairline flex flex-col gap-3">
         <div class="flex items-baseline gap-3">
           <span class="num text-[28px] text-gold/40 leading-none">04</span>
           <h3 class="h3">You take it from there.</h3>
@@ -380,66 +349,60 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ============ WHY PETCOPAW ============ -->
 <section class="section bg-choc text-cream">
   <div class="container grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-    <div class="lg:col-span-6 flex flex-col gap-5">
+    <div class="lg:col-span-5 flex justify-center order-last lg:order-first">
+      <div class="w-full max-w-[360px] aspect-[4/5] rounded-lg overflow-hidden shadow-xl border border-cream/10">
+        <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793888037/IMG-20261105-WA0054_initmq.jpg" alt="Petcopaw sourcing specialist holding parrots, demonstrating hands-on industry experience" class="w-full h-full object-cover" loading="lazy"/>
+      </div>
+    </div>
+    <div class="lg:col-span-7 flex flex-col gap-5">
       <span class="eyebrow !text-gold-soft">Why Petcopaw</span>
       <h2 class="h2 !text-cream">Decades of experience, on both sides of the transaction.</h2>
-      <p class="body text-cream/80 text-[16px] leading-[1.7]">
-        We understand that the right match is not simply whoever says they have a pet available. Breed specialization, clear expectations, honest communication, and follow-through matter.
-      </p>
-      <p class="body text-cream/80 text-[16px] leading-[1.7]">
-        Petcopaw brings experience and guidance to a process that can otherwise leave buyers guessing.
-      </p>
-      <blockquote class="mt-2 pl-5 border-l-2 border-gold-soft font-display text-[20px] md:text-[22px] italic text-gold-soft leading-[1.35]">
-        The right pet. The right source. The right guidance.
-      </blockquote>
-    </div>
-
-    <div class="lg:col-span-6 grid grid-cols-2 gap-x-8 gap-y-8">
-      <div class="flex flex-col gap-2 pt-4 border-t border-cream/15">
-        <span class="num text-[40px] md:text-[48px] text-gold-soft leading-none">Decades</span>
-        <span class="text-[12px] text-cream/60 mt-1">Industry experience</span>
-      </div>
-      <div class="flex flex-col gap-2 pt-4 border-t border-cream/15">
-        <span class="num text-[40px] md:text-[48px] text-gold-soft leading-none">Zero</span>
-        <span class="text-[12px] text-cream/60 mt-1">Markup on the pet</span>
-      </div>
-      <div class="flex flex-col gap-2 pt-4 border-t border-cream/15">
-        <span class="num text-[40px] md:text-[48px] text-gold-soft leading-none">Direct</span>
-        <span class="text-[12px] text-cream/60 mt-1">Introductions to breeders</span>
-      </div>
-      <div class="flex flex-col gap-2 pt-4 border-t border-cream/15">
-        <span class="num text-[40px] md:text-[48px] text-gold-soft leading-none">100%</span>
-        <span class="text-[12px] text-cream/60 mt-1">Objective guidance</span>
+      <p class="body text-cream/80 text-[16px] leading-[1.7]">We understand that the right match is not simply whoever says they have a pet available. Breed specialization, clear expectations, honest communication, and follow-through matter.</p>
+      <p class="body text-cream/80 text-[16px] leading-[1.7]">Petcopaw brings experience and guidance to a process that can otherwise leave buyers guessing.</p>
+      <blockquote class="mt-2 pl-5 border-l-2 border-gold-soft font-display text-[20px] md:text-[22px] italic text-gold-soft leading-[1.35]">The right pet. The right source. The right guidance.</blockquote>
+      <div class="grid grid-cols-2 gap-x-8 gap-y-6 pt-4 mt-2 border-t border-cream/15">
+        <div class="flex flex-col gap-2">
+          <span class="num text-[32px] md:text-[36px] text-gold-soft leading-none">Zero</span>
+          <span class="text-[12px] text-cream/60 mt-1">Markup on the pet</span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <span class="num text-[32px] md:text-[36px] text-gold-soft leading-none">Direct</span>
+          <span class="text-[12px] text-cream/60 mt-1">Introductions to breeders</span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <span class="num text-[32px] md:text-[36px] text-gold-soft leading-none">100%</span>
+          <span class="text-[12px] text-cream/60 mt-1">Objective guidance</span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <span class="num text-[32px] md:text-[36px] text-gold-soft leading-none">Decades</span>
+          <span class="text-[12px] text-cream/60 mt-1">Industry experience</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ FEES ============ -->
-<section id="fees" class="section border-t hairline">
+<section id="fees" class="section border-t border-hairline">
   <div class="container flex flex-col gap-12">
     <div class="max-w-[560px] flex flex-col gap-3">
       <span class="eyebrow">Service tiers & fees</span>
       <h2 class="h2">Transparent sourcing fees.</h2>
       <p class="lede">Select the tier that matches your preferred provenance. All fees are Petcopaw consultancy and sourcing fees — not the purchase price of an animal.</p>
     </div>
-
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
       <div class="card p-6 flex flex-col justify-between">
         <div class="flex flex-col gap-4">
           <span class="eyebrow">Tier 01</span>
           <h3 class="h3-display">Locally Bred Pets</h3>
           <p class="small">Family companions from reputable local Nigerian breeders.</p>
-          <div class="pt-4 border-t hairline">
+          <div class="pt-4 border-t border-hairline">
             <span class="num text-[32px] text-choc-deep font-medium">₦25,000</span>
           </div>
         </div>
         <a href="#intake" data-tier="25000" class="tier-cta btn btn-secondary w-full mt-6">Choose this tier</a>
       </div>
-
       <div class="card p-6 flex flex-col justify-between relative">
         <div class="absolute inset-x-0 top-0 h-[2px] bg-choc rounded-t-[12px]"></div>
         <div class="flex flex-col gap-4">
@@ -449,59 +412,36 @@ tailwind.config = {
           </div>
           <h3 class="h3-display">Locally Bred From Imported Parents</h3>
           <p class="small">Specific lineage from domestic litters of imported dam or sire.</p>
-          <div class="pt-4 border-t hairline">
+          <div class="pt-4 border-t border-hairline">
             <span class="num text-[32px] text-choc-deep font-medium">₦35,000</span>
           </div>
         </div>
         <a href="#intake" data-tier="35000" class="tier-cta btn btn-primary w-full mt-6">Choose this tier</a>
       </div>
-
       <div class="card p-6 flex flex-col justify-between">
         <div class="flex flex-col gap-4">
           <span class="eyebrow">Tier 03</span>
           <h3 class="h3-display">Sourcing Imported Pets</h3>
           <p class="small">Rare breeds or pedigrees through established international channels.</p>
-          <div class="pt-4 border-t hairline">
+          <div class="pt-4 border-t border-hairline">
             <span class="num text-[32px] text-choc-deep font-medium">₦50,000</span>
           </div>
         </div>
         <a href="#intake" data-tier="50000" class="tier-cta btn btn-secondary w-full mt-6">Choose this tier</a>
       </div>
     </div>
-
-    <!-- Refund policy -->
-    <div class="card p-6 md:p-8 flex flex-col gap-6">
-      <div class="flex flex-col gap-1.5">
-        <span class="eyebrow">Refund policy — the exact rule</span>
-        <h3 class="h3-display">Two clear commitments.</h3>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="p-5 rounded-md bg-cream-low border-l-2 border-choc">
-          <p class="text-[11px] uppercase tracking-[0.14em] font-semibold text-choc mb-2">Full refund</p>
-          <p class="small text-ink leading-[1.65]">If Petcopaw is unable to recommend a suitable breeder for the client's requested breed, the client receives a <strong class="text-ink font-semibold">full refund</strong> of the Petcopaw service fee.</p>
-        </div>
-        <div class="p-5 rounded-md bg-cream-low border-l-2 border-ink-muted/40">
-          <p class="text-[11px] uppercase tracking-[0.14em] font-semibold text-ink-soft mb-2">No refund once introduced</p>
-          <p class="small text-ink leading-[1.65]">Once Petcopaw recommends a suitable breeder and provides the client's contact information, Petcopaw has fulfilled its service and the fee is <strong class="text-ink font-semibold">non-refundable</strong> — including if you choose not to proceed, the breeder does not complete a sale, or the parties do not reach agreement.</p>
-        </div>
-      </div>
-      <p class="micro leading-[1.55]">These are consultancy and sourcing fees — not payment for an animal. They compensate Petcopaw's time, industry experience, guidance, sourcing assistance, and recommendation.</p>
-    </div>
   </div>
 </section>
 
-<!-- ============ INTAKE FORM ============ -->
-<section id="intake" class="section bg-cream-low border-t hairline">
+<section id="intake" class="section bg-cream-low border-t border-hairline">
   <div class="container">
     <div class="max-w-[720px] mx-auto flex flex-col gap-8">
-
       <div class="flex flex-col gap-3">
         <span class="eyebrow">Start your pet search</span>
         <h2 class="h2">Tell us what you're looking for.</h2>
         <p class="lede">Share your details below. You'll review the fee, refund policy, and full third-party disclaimer before any payment. After submission we'll review the request and follow up directly.</p>
       </div>
 
-      <!-- Confirmation panel -->
       <div id="confirmationPanel" class="hidden card p-8 md:p-10 flex-col items-center text-center gap-5">
         <span class="w-14 h-14 rounded-full bg-gold-soft text-gold-ink flex items-center justify-center">
           <span class="material-symbols-outlined text-[26px]" style="font-variation-settings:'FILL' 1;">check</span>
@@ -518,14 +458,12 @@ tailwind.config = {
         <p class="micro max-w-[400px]">A follow-up will arrive at the email you provided. WhatsApp is our preferred channel for updates.</p>
       </div>
 
-      <!-- Form -->
       <form id="intakeForm" novalidate class="card p-6 md:p-10 flex flex-col gap-8">
 
-        <!-- About you -->
-        <fieldset class="flex flex-col gap-4">
-          <div class="flex items-center gap-3 pb-2 border-b hairline">
+        <div class="flex flex-col gap-4">
+          <div class="flex items-center gap-3 pb-2 border-b border-hairline">
             <span class="num text-[20px] text-gold/40 leading-none">01</span>
-            <legend class="eyebrow !text-choc">About you</legend>
+            <span class="eyebrow !text-choc">About you</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <label class="flex flex-col gap-1.5">
@@ -548,13 +486,12 @@ tailwind.config = {
               <input name="whatsapp" type="tel" class="input" placeholder="+234 800 000 0000"/>
             </label>
           </div>
-        </fieldset>
+        </div>
 
-        <!-- Requirements -->
-        <fieldset class="flex flex-col gap-4">
-          <div class="flex items-center gap-3 pb-2 border-b hairline">
+        <div class="flex flex-col gap-4">
+          <div class="flex items-center gap-3 pb-2 border-b border-hairline">
             <span class="num text-[20px] text-gold/40 leading-none">02</span>
-            <legend class="eyebrow !text-choc">What you're looking for</legend>
+            <span class="eyebrow !text-choc">What you're looking for</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <label class="flex flex-col gap-1.5">
@@ -580,41 +517,39 @@ tailwind.config = {
             <span class="text-[13px] font-semibold text-ink">Details</span>
             <textarea name="details" rows="3" class="textarea" placeholder="Sex, coloration, temperament, household, questions you'd like us to help you ask…"></textarea>
           </label>
-        </fieldset>
+        </div>
 
-        <!-- Tier -->
-        <fieldset class="flex flex-col gap-4">
-          <div class="flex items-center gap-3 pb-2 border-b hairline">
+        <div class="flex flex-col gap-4">
+          <div class="flex items-center gap-3 pb-2 border-b border-hairline">
             <span class="num text-[20px] text-gold/40 leading-none">03</span>
-            <legend class="eyebrow !text-choc">Sourcing tier <span class="text-err">*</span></legend>
+            <span class="eyebrow !text-choc">Sourcing tier <span class="text-err">*</span></span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="tierGroup">
-            <label class="tier-card cursor-pointer p-4 rounded-md bg-cream-low border border-transparent hover:border-hairline-strong transition-colors duration-120 flex flex-col gap-1" data-value="25000">
+            <label class="tier-card cursor-pointer p-4 rounded-md bg-cream-low border border-transparent hover:border-hairline-strong transition-colors flex flex-col gap-1" data-value="25000">
               <input type="radio" name="tier" value="25000" class="sr-only" required/>
               <span class="text-[10px] uppercase tracking-[0.14em] font-semibold text-gold">Tier 01</span>
               <span class="text-[13px] font-semibold text-ink mt-1">Locally Bred Pets</span>
               <span class="num text-[20px] text-choc-deep mt-2">₦25,000</span>
             </label>
-            <label class="tier-card cursor-pointer p-4 rounded-md bg-cream-low border border-transparent hover:border-hairline-strong transition-colors duration-120 flex flex-col gap-1" data-value="35000">
+            <label class="tier-card cursor-pointer p-4 rounded-md bg-cream-low border border-transparent hover:border-hairline-strong transition-colors flex flex-col gap-1" data-value="35000">
               <input type="radio" name="tier" value="35000" class="sr-only"/>
               <span class="text-[10px] uppercase tracking-[0.14em] font-semibold text-gold">Tier 02</span>
               <span class="text-[13px] font-semibold text-ink mt-1">Locally Bred From Imported Parents</span>
               <span class="num text-[20px] text-choc-deep mt-2">₦35,000</span>
             </label>
-            <label class="tier-card cursor-pointer p-4 rounded-md bg-cream-low border border-transparent hover:border-hairline-strong transition-colors duration-120 flex flex-col gap-1" data-value="50000">
+            <label class="tier-card cursor-pointer p-4 rounded-md bg-cream-low border border-transparent hover:border-hairline-strong transition-colors flex flex-col gap-1" data-value="50000">
               <input type="radio" name="tier" value="50000" class="sr-only"/>
               <span class="text-[10px] uppercase tracking-[0.14em] font-semibold text-gold">Tier 03</span>
               <span class="text-[13px] font-semibold text-ink mt-1">Sourcing Imported Pets</span>
               <span class="num text-[20px] text-choc-deep mt-2">₦50,000</span>
             </label>
           </div>
-        </fieldset>
+        </div>
 
-        <!-- Terms -->
-        <fieldset class="flex flex-col gap-4 rounded-md bg-cream-low p-5 md:p-6 border hairline">
-          <div class="flex items-center gap-3 pb-2 border-b hairline">
+        <div class="flex flex-col gap-4 rounded-md bg-cream-low p-5 md:p-6 border border-hairline">
+          <div class="flex items-center gap-3 pb-2 border-b border-hairline">
             <span class="num text-[20px] text-gold/40 leading-none">04</span>
-            <legend class="eyebrow !text-choc">Before you continue</legend>
+            <span class="eyebrow !text-choc">Before you continue</span>
           </div>
 
           <div class="flex flex-col gap-2">
@@ -622,7 +557,7 @@ tailwind.config = {
             <p class="small text-ink leading-[1.65]">The Petcopaw service fee pays for Petcopaw's time, industry experience, guidance, sourcing assistance, and recommendation. It is not payment for the animal and does not guarantee that a purchase will occur.</p>
           </div>
 
-          <details class="group border-t hairline pt-4">
+          <details class="group border-t border-hairline pt-4">
             <summary class="cursor-pointer flex items-center justify-between gap-3 list-none">
               <span class="text-[13px] font-semibold text-ink">Refund policy — full text</span>
               <span class="material-symbols-outlined text-gold text-[18px] group-open:rotate-180 transition-transform duration-200">expand_more</span>
@@ -633,7 +568,7 @@ tailwind.config = {
             </div>
           </details>
 
-          <details class="group border-t hairline pt-4">
+          <details class="group border-t border-hairline pt-4">
             <summary class="cursor-pointer flex items-center justify-between gap-3 list-none">
               <span class="text-[13px] font-semibold text-ink">Third-party & pet disclaimer — full text</span>
               <span class="material-symbols-outlined text-gold text-[18px] group-open:rotate-180 transition-transform duration-200">expand_more</span>
@@ -650,9 +585,8 @@ tailwind.config = {
             <input id="termsCheck" type="checkbox" required class="mt-0.5 w-4 h-4 rounded accent-[#542719] cursor-pointer"/>
             <span class="small text-ink leading-[1.6]">I have read and agree to the <strong class="font-semibold">service fee</strong>, the <strong class="font-semibold">refund policy</strong>, and the <strong class="font-semibold">full third-party & pet disclaimer</strong> above.</span>
           </label>
-        </fieldset>
+        </div>
 
-        <!-- Submit -->
         <div class="flex flex-col gap-3">
           <div id="formError" class="hidden text-[13px] text-err items-center gap-1.5 font-medium"></div>
           <button id="submitBtn" type="submit" class="btn btn-primary btn-lg w-full">
@@ -667,38 +601,36 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ============ FAQ ============ -->
-<section id="faq" class="section border-t hairline">
+<section id="faq" class="section border-t border-hairline">
   <div class="container">
     <div class="max-w-[720px] mx-auto flex flex-col gap-10">
       <div class="flex flex-col gap-3">
         <span class="eyebrow">Frequently asked</span>
         <h2 class="h2">Clear answers, upfront.</h2>
       </div>
-
-      <div class="border-t hairline">
-        <details class="faq-item group border-b hairline">
+      <div class="border-t border-hairline">
+        <details class="faq-item group border-b border-hairline">
           <summary class="cursor-pointer flex items-center justify-between gap-4 py-5 list-none">
             <h3 class="text-[15px] md:text-[16px] font-semibold text-choc-deep">What does Petcopaw do?</h3>
             <span class="material-symbols-outlined text-gold text-[18px] shrink-0 group-open:rotate-180 transition-transform duration-200">expand_more</span>
           </summary>
           <p class="pb-5 body text-ink-soft max-w-[640px]">Petcopaw is an independent pet sourcing consultancy. We listen to what you're looking for, use our industry experience to understand the request, and help connect you with an independent breeder or seller whose experience and specialization are better suited to that specific breed. We do not breed, sell, or own animals.</p>
         </details>
-        <details class="faq-item group border-b hairline">
+        <details class="faq-item group border-b border-hairline">
           <summary class="cursor-pointer flex items-center justify-between gap-4 py-5 list-none">
             <h3 class="text-[15px] md:text-[16px] font-semibold text-choc-deep">How does the process work?</h3>
             <span class="material-symbols-outlined text-gold text-[18px] shrink-0 group-open:rotate-180 transition-transform duration-200">expand_more</span>
           </summary>
           <p class="pb-5 body text-ink-soft max-w-[640px]">Four steps: (1) you tell us what you want through the inquiry form; (2) we assess the request using our industry knowledge and relationships; (3) if we can recommend a suitable breeder for the requested breed, we provide the recommendation and contact information; and (4) you contact the breeder and handle any further discussions and purchase directly with that independent breeder or seller.</p>
         </details>
-        <details class="faq-item group border-b hairline">
+        <details class="faq-item group border-b border-hairline">
           <summary class="cursor-pointer flex items-center justify-between gap-4 py-5 list-none">
             <h3 class="text-[15px] md:text-[16px] font-semibold text-choc-deep">Can you source any breed?</h3>
             <span class="material-symbols-outlined text-gold text-[18px] shrink-0 group-open:rotate-180 transition-transform duration-200">expand_more</span>
           </summary>
           <p class="pb-5 body text-ink-soft max-w-[640px]">Not always. We will only make a recommendation when we can identify a suitable source whose experience and specialization genuinely fit the request. If we cannot recommend a suitable breeder for your requested breed, you receive a full refund of the Petcopaw service fee.</p>
         </details>
-        <details class="faq-item group border-b hairline">
+        <details class="faq-item group border-b border-hairline">
           <summary class="cursor-pointer flex items-center justify-between gap-4 py-5 list-none">
             <h3 class="text-[15px] md:text-[16px] font-semibold text-choc-deep">How long can it take?</h3>
             <span class="material-symbols-outlined text-gold text-[18px] shrink-0 group-open:rotate-180 transition-transform duration-200">expand_more</span>
@@ -717,8 +649,7 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ============ CONTACT ============ -->
-<section id="contact" class="section-tight border-t hairline">
+<section id="contact" class="section-tight border-t border-hairline">
   <div class="container">
     <div class="rounded-[16px] bg-choc text-cream p-8 md:p-12 lg:p-14 relative overflow-hidden">
       <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -732,7 +663,7 @@ tailwind.config = {
           </a>
         </div>
         <div class="lg:col-span-5 flex flex-col gap-2">
-          <a href="https://instagram.com/petcopaw" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-md hover:bg-white/5 transition-colors duration-120">
+          <a href="https://instagram.com/petcopaw" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-md hover:bg-white/5 transition-colors">
             <span class="w-9 h-9 rounded-md bg-gold-soft text-gold-ink flex items-center justify-center shrink-0">
               <span class="material-symbols-outlined text-[18px]">photo_camera</span>
             </span>
@@ -741,22 +672,22 @@ tailwind.config = {
               <span class="text-[13px] text-cream">@petcopaw</span>
             </div>
           </a>
-          <a href="mailto:hello@petcopaw.com" class="flex items-center gap-3 p-3 rounded-md hover:bg-white/5 transition-colors duration-120">
+          <a href="mailto:sales@petcopaw.com" class="flex items-center gap-3 p-3 rounded-md hover:bg-white/5 transition-colors">
             <span class="w-9 h-9 rounded-md bg-gold-soft text-gold-ink flex items-center justify-center shrink-0">
               <span class="material-symbols-outlined text-[18px]">mail</span>
             </span>
             <div class="flex flex-col">
               <span class="text-[10px] uppercase tracking-[0.14em] font-semibold text-gold-soft">Email</span>
-              <span class="text-[13px] text-cream">hello@petcopaw.com</span>
+              <span class="text-[13px] text-cream">sales@petcopaw.com</span>
             </div>
           </a>
-          <a href="https://wa.me/2348000000000" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-md hover:bg-white/5 transition-colors duration-120">
+          <a href="https://wa.me/2348136394126" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-md hover:bg-white/5 transition-colors">
             <span class="w-9 h-9 rounded-md bg-gold-soft text-gold-ink flex items-center justify-center shrink-0">
               <span class="material-symbols-outlined text-[18px]">chat</span>
             </span>
             <div class="flex flex-col">
               <span class="text-[10px] uppercase tracking-[0.14em] font-semibold text-gold-soft">WhatsApp · preferred</span>
-              <span class="text-[13px] text-cream">+234 800 000 0000</span>
+              <span class="text-[13px] text-cream">+234 813 639 4126</span>
             </div>
           </a>
         </div>
@@ -767,7 +698,6 @@ tailwind.config = {
 
 </main>
 
-<!-- ============ FOOTER ============ -->
 <footer class="bg-choc-deep text-cream/70 py-12 md:py-14">
   <div class="container">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10">
@@ -782,17 +712,17 @@ tailwind.config = {
       </div>
       <div class="flex flex-col gap-2">
         <span class="text-[10px] uppercase tracking-[0.14em] font-semibold text-gold-soft mb-1">Navigate</span>
-        <a href="#gap" class="text-[12px] text-cream/60 hover:text-cream transition-colors duration-120">The Gap</a>
-        <a href="#how" class="text-[12px] text-cream/60 hover:text-cream transition-colors duration-120">How It Works</a>
-        <a href="#fees" class="text-[12px] text-cream/60 hover:text-cream transition-colors duration-120">Fees</a>
-        <a href="#faq" class="text-[12px] text-cream/60 hover:text-cream transition-colors duration-120">FAQ</a>
+        <a href="#gap" class="text-[12px] text-cream/60 hover:text-cream transition-colors">The Gap</a>
+        <a href="#how" class="text-[12px] text-cream/60 hover:text-cream transition-colors">How It Works</a>
+        <a href="#fees" class="text-[12px] text-cream/60 hover:text-cream transition-colors">Fees</a>
+        <a href="#faq" class="text-[12px] text-cream/60 hover:text-cream transition-colors">FAQ</a>
       </div>
       <div class="flex flex-col gap-2">
         <span class="text-[10px] uppercase tracking-[0.14em] font-semibold text-gold-soft mb-1">Contact</span>
-        <a href="https://instagram.com/petcopaw" target="_blank" rel="noopener noreferrer" class="text-[12px] text-cream/60 hover:text-cream transition-colors duration-120">Instagram @petcopaw</a>
-        <a href="mailto:hello@petcopaw.com" class="text-[12px] text-cream/60 hover:text-cream transition-colors duration-120">hello@petcopaw.com</a>
-        <a href="https://wa.me/2348000000000" target="_blank" rel="noopener noreferrer" class="text-[12px] text-cream/60 hover:text-cream transition-colors duration-120">WhatsApp</a>
-        <a href="#intake" class="text-[12px] text-cream/60 hover:text-cream transition-colors duration-120">Start Your Search</a>
+        <a href="https://instagram.com/petcopaw" target="_blank" rel="noopener noreferrer" class="text-[12px] text-cream/60 hover:text-cream transition-colors">Instagram @petcopaw</a>
+        <a href="mailto:sales@petcopaw.com" class="text-[12px] text-cream/60 hover:text-cream transition-colors">sales@petcopaw.com</a>
+        <a href="https://wa.me/2348136394126" target="_blank" rel="noopener noreferrer" class="text-[12px] text-cream/60 hover:text-cream transition-colors">WhatsApp</a>
+        <a href="#intake" class="text-[12px] text-cream/60 hover:text-cream transition-colors">Start Your Search</a>
       </div>
     </div>
     <div class="pt-6 border-t border-cream/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-2">
@@ -803,7 +733,12 @@ tailwind.config = {
 </footer>
 
 <script>
-  // Mobile menu
+  const CONFIG = {
+    WEB3FORMS_ACCESS_KEY: 'REPLACE_WITH_YOUR_WEB3FORMS_KEY',
+    PAYSTACK_PUBLIC_KEY: 'pk_test_a7d0df914335a6c3669eb68f6169dee754b3962d',
+    DEMO_MODE: false
+  };
+
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   menuBtn?.addEventListener('click', () => {
@@ -815,11 +750,10 @@ tailwind.config = {
     menuBtn.setAttribute('aria-expanded', 'false');
   }));
 
-  // Tier card selection
   const tierCards = document.querySelectorAll('.tier-card');
   function setActiveTier(card) {
     tierCards.forEach(c => {
-      c.classList.remove('border-choc', 'bg-cream-mid', 'ring-1', 'ring-choc/20');
+      c.classList.remove('border-choc', 'bg-cream-mid');
       c.classList.add('border-transparent');
     });
     card.classList.remove('border-transparent');
@@ -829,7 +763,6 @@ tailwind.config = {
   }
   tierCards.forEach(card => card.addEventListener('click', () => setActiveTier(card)));
 
-  // Marketing CTA → preselect form tier
   document.querySelectorAll('.tier-cta').forEach(cta => {
     cta.addEventListener('click', () => {
       const val = cta.getAttribute('data-tier');
@@ -838,12 +771,17 @@ tailwind.config = {
     });
   });
 
-  // Form
   const form = document.getElementById('intakeForm');
   const submitBtn = document.getElementById('submitBtn');
   const termsCheck = document.getElementById('termsCheck');
   const formError = document.getElementById('formError');
   const confirmationPanel = document.getElementById('confirmationPanel');
+
+  const TIER_LABELS = {
+    '25000': 'Locally Bred Pets — ₦25,000',
+    '35000': 'Locally Bred From Imported Parents — ₦35,000',
+    '50000': 'Sourcing Imported Pets — ₦50,000'
+  };
 
   function showError(msg) {
     formError.textContent = msg;
@@ -856,12 +794,35 @@ tailwind.config = {
     formError.classList.remove('flex');
   }
 
-  termsCheck?.addEventListener('change', () => {
-    submitBtn.disabled = !termsCheck.checked;
-  });
-  submitBtn.disabled = true;
+  // UX IMPROVEMENT: Change button text based on checkbox state
+  function updateSubmitButton() {
+    if (termsCheck.checked) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">lock</span><span>Continue to secure payment</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span>';
+    } else {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">check_box_outline_blank</span><span>Please tick the terms box above</span>';
+    }
+  }
 
-  form?.addEventListener('submit', (e) => {
+  termsCheck?.addEventListener('change', updateSubmitButton);
+  updateSubmitButton(); // Run on page load
+
+  function collectFormData() {
+    return {
+      name: form.querySelector('[name="name"]').value.trim(),
+      email: form.querySelector('[name="email"]').value.trim(),
+      phone: form.querySelector('[name="phone"]').value.trim(),
+      whatsapp: form.querySelector('[name="whatsapp"]').value.trim(),
+      breed: form.querySelector('[name="breed"]').value.trim(),
+      location: form.querySelector('[name="location"]').value.trim(),
+      timing: form.querySelector('[name="timing"]').value,
+      details: form.querySelector('[name="details"]').value.trim(),
+      tierValue: form.querySelector('input[name="tier"]:checked').value
+    };
+  }
+
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     clearError();
 
@@ -884,28 +845,98 @@ tailwind.config = {
       return;
     }
 
-    // =========================================================
-    // COMMIT 2 replaces this block:
-    //   - Supabase insert (submission row)
-    //   - Resend admin notification
-    //   - Paystack checkout open
-    //   - On success → real confirmation panel + buyer email
-    // =========================================================
-    const tierLabel = {
-      '25000': 'Locally Bred Pets — ₦25,000',
-      '35000': 'Locally Bred From Imported Parents — ₦35,000',
-      '50000': 'Sourcing Imported Pets — ₦50,000'
-    }[tierChosen.value] || '—';
+    const data = collectFormData();
+    const tierLabel = TIER_LABELS[data.tierValue] || '—';
+    const amountKobo = parseInt(data.tierValue, 10) * 100;
 
-    document.getElementById('confRef').textContent = 'PCP-' + Math.floor(100000 + Math.random() * 900000);
+    if (CONFIG.DEMO_MODE) {
+      const fakeRef = 'PCP-DEMO-' + Math.floor(100000 + Math.random() * 900000);
+      await sendNotification(data, tierLabel, fakeRef);
+      showConfirmation(fakeRef, tierLabel, data.name);
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span><span>Opening secure checkout…</span>';
+
+    try {
+      const handler = PaystackPop.setup({
+        key: CONFIG.PAYSTACK_PUBLIC_KEY,
+        email: data.email,
+        amount: amountKobo,
+        currency: 'NGN',
+        ref: 'PCP-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8),
+        metadata: {
+          custom_fields: [
+            { display_name: 'Name', variable_name: 'name', value: data.name },
+            { display_name: 'Phone', variable_name: 'phone', value: data.phone },
+            { display_name: 'WhatsApp', variable_name: 'whatsapp', value: data.whatsapp },
+            { display_name: 'Breed', variable_name: 'breed', value: data.breed },
+            { display_name: 'Location', variable_name: 'location', value: data.location },
+            { display_name: 'Timing', variable_name: 'timing', value: data.timing },
+            { display_name: 'Tier', variable_name: 'tier', value: tierLabel }
+          ]
+        },
+        callback: async (response) => {
+          submitBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span><span>Recording your request…</span>';
+          await sendNotification(data, tierLabel, response.reference);
+          showConfirmation(response.reference, tierLabel, data.name);
+        },
+        onClose: () => {
+          updateSubmitButton(); // Reset button if they close the modal
+          showError('Payment window closed. Your request was not submitted.');
+        }
+      });
+      handler.openIframe();
+    } catch (err) {
+      updateSubmitButton(); // Reset button on error
+      showError('Could not open payment window. Please try again or email sales@petcopaw.com.');
+    }
+  });
+
+  async function sendNotification(data, tierLabel, paystackRef) {
+    if (!CONFIG.WEB3FORMS_ACCESS_KEY || CONFIG.WEB3FORMS_ACCESS_KEY.startsWith('REPLACE_')) {
+      console.warn('Web3Forms key not set — no email will be sent.');
+      return;
+    }
+    const payload = {
+      access_key: CONFIG.WEB3FORMS_ACCESS_KEY,
+      subject: `Petcopaw — New paid submission (${tierLabel})`,
+      from_name: 'Petcopaw Intake',
+      Name: data.name,
+      Email: data.email,
+      Phone: data.phone,
+      WhatsApp: data.whatsapp,
+      'Pet or breed': data.breed,
+      Location: data.location,
+      Timing: data.timing,
+      Details: data.details || '(none)',
+      Tier: tierLabel,
+      'Paystack reference': paystackRef,
+      Status: 'paid'
+    };
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const json = await res.json();
+      if (!json.success) console.error('Web3Forms response:', json);
+    } catch (err) {
+      console.error('Web3Forms error:', err);
+    }
+  }
+
+  function showConfirmation(ref, tierLabel, name) {
+    document.getElementById('confRef').textContent = ref;
     document.getElementById('confTier').textContent = tierLabel;
-    document.getElementById('confName').textContent = form.querySelector('[name="name"]').value;
-
+    document.getElementById('confName').textContent = name;
     form.classList.add('hidden');
     confirmationPanel.classList.remove('hidden');
     confirmationPanel.classList.add('flex');
     confirmationPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  });
+  }
 </script>
 
 </body>
