@@ -13,8 +13,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..500,0..1,-25..0" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
-<!-- UPDATED TO V2 -->
-<script src="https://js.paystack.co/v2/inline.js"></script>
 <script>
 tailwind.config = {
   theme: {
@@ -736,7 +734,7 @@ tailwind.config = {
 <script>
   const CONFIG = {
     WEB3FORMS_ACCESS_KEY: '50347ece-4592-435a-bf38-aecfcb378478',
-    PAYSTACK_PUBLIC_KEY: 'pk_live_ab2c6a86adfe36894b11f4f5caca6cb0492bee26',
+    PAYSTACK_PUBLIC_KEY: 'pk_test_a7d0df914335a6c3669eb68f6169dee754b3962d',
     DEMO_MODE: false
   };
 
@@ -822,14 +820,23 @@ tailwind.config = {
     };
   }
 
+  function loadPaystackScript() {
+    return new Promise((resolve, reject) => {
+      if (typeof PaystackPop !== 'undefined') {
+        return resolve();
+      }
+      const script = document.createElement('script');
+      script.src = 'https://js.paystack.co/v2/inline.js';
+      script.async = true;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error('Failed to load Paystack script. Adblocker or network issue.'));
+      document.head.appendChild(script);
+    });
+  }
+
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     clearError();
-
-    if (typeof PaystackPop === 'undefined') {
-      showError('Payment system is blocked. Please disable your ad-blocker or try a different browser.');
-      return;
-    }
 
     const required = ['name', 'email', 'phone', 'breed', 'location', 'timing'];
     for (const field of required) {
@@ -862,6 +869,17 @@ tailwind.config = {
     }
 
     submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span><span>Loading secure gateway…</span>';
+
+    try {
+      await loadPaystackScript();
+    } catch (scriptError) {
+      updateSubmitButton();
+      showError('Payment system blocked. Please disable your adblocker or try Incognito mode.');
+      console.error(scriptError);
+      return;
+    }
+
     submitBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span><span>Opening secure checkout…</span>';
 
     try {
@@ -894,9 +912,9 @@ tailwind.config = {
         }
       });
     } catch (err) {
-      console.error('Paystack error:', err);
+      console.error('Paystack Initialization Error:', err);
       updateSubmitButton();
-      showError('Could not open payment window. Please try a different browser or disable your ad-blocker.');
+      showError('Could not open payment window. If this persists, try using a different browser (Chrome/Safari).');
     }
   });
 
@@ -946,4 +964,4 @@ tailwind.config = {
 </script>
 
 </body>
-          </html>
+</html>
