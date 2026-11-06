@@ -170,13 +170,14 @@ tailwind.config = {
 </head>
 <body class="bg-cream text-ink font-sans antialiased">
 
-<header class="fixed top-0 inset-x-0 z-50 bg-cream/90 backdrop-blur-md border-b border-hairline no-print">
+<!-- Solid background prevents the logo blend mode from breaking -->
+<header class="fixed top-0 inset-x-0 z-50 bg-cream border-b border-hairline no-print">
   <div class="container h-16 md:h-[72px] flex items-center justify-between gap-4">
-    <a href="#top" class="flex items-center gap-2.5 group">
-      <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793945900/petcopaw_xksadv.png" alt="Petcopaw Logo" class="w-9 h-9 object-contain transition-transform duration-200 group-hover:scale-[1.03]"/>
+    <a href="#top" class="flex items-center gap-2 group">
+      <!-- mix-blend-multiply removes the white background against the solid cream header -->
+      <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793945900/petcopaw_xksadv.png" alt="Petcopaw Logo" class="w-10 h-10 object-contain mix-blend-multiply transition-transform duration-200 group-hover:scale-[1.03]"/>
       <div class="flex flex-col leading-none">
-        <span class="font-display text-[18px] text-choc-deep tracking-tight">Petcopaw</span>
-        <span class="text-[10px] uppercase tracking-[0.16em] text-gold pt-0.5 font-semibold">Sourcing guidance</span>
+        <span class="font-display text-[22px] text-choc-deep tracking-tight">Petcopaw</span>
       </div>
     </a>
 
@@ -242,15 +243,32 @@ tailwind.config = {
           <div class="mt-4 rounded-md bg-cream-mid border border-hairline overflow-hidden relative">
             <div class="swiper dossierSwiper w-full h-[340px]">
               <div class="swiper-wrapper">
+                
+                <!-- Slide 1 -->
                 <div class="swiper-slide flex items-center justify-center p-2">
                   <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793945361/IMG-20261106-WA0004_ex9xlw.jpg" alt="Imported pet" class="w-full h-full object-contain drop-shadow-md" />
                 </div>
+                
+                <!-- Slide 2 -->
                 <div class="swiper-slide flex items-center justify-center p-2">
                   <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793945365/E89CBC27-2600-4E76-86F3-FE441292C4A8_ditny1.png" alt="Imported pet" class="w-full h-full object-contain drop-shadow-md" />
                 </div>
+                
+                <!-- Slide 3 -->
                 <div class="swiper-slide flex items-center justify-center p-2">
                   <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793945364/1793945026773_wjpjmc.jpg" alt="Imported pet" class="w-full h-full object-contain drop-shadow-md" />
                 </div>
+
+                <!-- Slide 4 -->
+                <div class="swiper-slide flex items-center justify-center p-2">
+                  <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793971639/IMG-20261106-WA0017_b7kckl.jpg" alt="Imported pet" class="w-full h-full object-contain drop-shadow-md" />
+                </div>
+
+                <!-- Slide 5 -->
+                <div class="swiper-slide flex items-center justify-center p-2">
+                  <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793972386/IMG-20261106-WA0019_fl4pw3.jpg" alt="Imported pet" class="w-full h-full object-contain drop-shadow-md" />
+                </div>
+
               </div>
               <div class="swiper-pagination"></div>
             </div>
@@ -793,7 +811,7 @@ tailwind.config = {
         <!-- Decorative Element -->
         <div class="absolute -top-12 -right-12 w-32 h-32 bg-gold-soft/20 rounded-full blur-2xl"></div>
         
-        <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793945900/petcopaw_xksadv.png" alt="Petcopaw Logo" class="w-12 h-12 object-contain mb-3"/>
+        <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793945900/petcopaw_xksadv.png" alt="Petcopaw Logo" class="w-12 h-12 object-contain mb-3 mix-blend-multiply"/>
         <h2 class="font-display text-2xl text-choc-deep tracking-tight">Petcopaw</h2>
         <span class="text-[10px] uppercase tracking-[0.16em] text-gold font-semibold mt-1">Sourcing Guidance</span>
         
@@ -885,13 +903,15 @@ tailwind.config = {
 
 </main>
 
-<footer class="bg-choc-deep text-cream/70 py-12 md:py-14 no-print">
+<!-- UPDATED FOOTER (Now matches primary brand brown) -->
+<footer class="bg-choc text-cream/70 py-12 md:py-14 no-print">
   <div class="container">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10">
       <div class="md:col-span-2 flex flex-col gap-3">
         <div class="flex items-center gap-2.5">
-          <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793945900/petcopaw_xksadv.png" alt="Petcopaw Logo" class="w-8 h-8 object-contain"/>
-          <span class="font-display text-[16px] text-cream">Petcopaw</span>
+          <!-- filter: invert(1) mix-blend-mode: screen makes the white bg invisible against the dark brown footer -->
+          <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793945900/petcopaw_xksadv.png" alt="Petcopaw Logo" class="w-9 h-9 object-contain" style="filter: invert(1); mix-blend-mode: screen;"/>
+          <span class="font-display text-[18px] text-cream">Petcopaw</span>
         </div>
         <p class="text-[12px] leading-[1.65] max-w-[340px] text-cream/60">Independent pet sourcing consultancy. The right pet. The right source. The right guidance.</p>
       </div>
@@ -1118,7 +1138,6 @@ tailwind.config = {
     } catch (err) {
       console.error('Paystack Initialization Error:', err);
       updateSubmitButton();
-      // SPECIFIC CHROME ERROR MESSAGE
       showError('Could not open checkout. If you are using Chrome, please check your ad-blocker or "Block Third-Party Cookies" settings, or try an Incognito window.');
     }
   });
