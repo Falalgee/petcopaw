@@ -189,7 +189,6 @@ tailwind.config = {
 <section class="relative overflow-hidden">
   <div class="container py-16 md:py-24 lg:py-28 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
     <div class="lg:col-span-7 flex flex-col gap-6">
-      <!-- Removed the eyebrow here -->
       <h1 class="h1">
         The right pet.<br/>
         <span class="italic font-normal text-choc">The right source.</span><br/>
@@ -554,30 +553,38 @@ tailwind.config = {
           </label>
         </div>
 
+        <!-- UPDATED TIER CARDS FOR BETTER VISIBILITY -->
         <div class="flex flex-col gap-4">
           <div class="flex items-center gap-3 pb-2 border-b border-hairline">
             <span class="num text-[20px] text-gold/40 leading-none">03</span>
             <span class="eyebrow !text-choc">Sourcing tier <span class="text-err">*</span></span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="tierGroup">
-            <label class="tier-card cursor-pointer p-4 rounded-md bg-cream-low border border-transparent hover:border-hairline-strong transition-colors flex flex-col gap-1" data-value="25000">
+            
+            <label class="tier-card group relative cursor-pointer p-5 rounded-lg bg-cream-low border-2 border-transparent hover:border-hairline-strong transition-all duration-200 flex flex-col gap-1" data-value="25000">
+              <span class="absolute top-4 right-4 material-symbols-outlined text-choc text-[22px] opacity-0 transition-opacity duration-200 check-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
               <input type="radio" name="tier" value="25000" class="sr-only" required/>
               <span class="text-[10px] uppercase tracking-[0.14em] font-semibold text-gold">Tier 01</span>
-              <span class="text-[13px] font-semibold text-ink mt-1">Locally Bred Pets</span>
-              <span class="num text-[20px] text-choc-deep mt-2">₦25,000</span>
+              <span class="text-[14px] font-semibold text-ink mt-1 pr-6">Locally Bred Pets</span>
+              <span class="num text-[22px] text-choc-deep mt-2">₦25,000</span>
             </label>
-            <label class="tier-card cursor-pointer p-4 rounded-md bg-cream-low border border-transparent hover:border-hairline-strong transition-colors flex flex-col gap-1" data-value="35000">
+
+            <label class="tier-card group relative cursor-pointer p-5 rounded-lg bg-cream-low border-2 border-transparent hover:border-hairline-strong transition-all duration-200 flex flex-col gap-1" data-value="35000">
+              <span class="absolute top-4 right-4 material-symbols-outlined text-choc text-[22px] opacity-0 transition-opacity duration-200 check-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
               <input type="radio" name="tier" value="35000" class="sr-only"/>
               <span class="text-[10px] uppercase tracking-[0.14em] font-semibold text-gold">Tier 02</span>
-              <span class="text-[13px] font-semibold text-ink mt-1">Locally Bred From Imported Parents</span>
-              <span class="num text-[20px] text-choc-deep mt-2">₦35,000</span>
+              <span class="text-[14px] font-semibold text-ink mt-1 pr-6">Locally Bred From Imported Parents</span>
+              <span class="num text-[22px] text-choc-deep mt-2">₦35,000</span>
             </label>
-            <label class="tier-card cursor-pointer p-4 rounded-md bg-cream-low border border-transparent hover:border-hairline-strong transition-colors flex flex-col gap-1" data-value="50000">
+
+            <label class="tier-card group relative cursor-pointer p-5 rounded-lg bg-cream-low border-2 border-transparent hover:border-hairline-strong transition-all duration-200 flex flex-col gap-1" data-value="50000">
+              <span class="absolute top-4 right-4 material-symbols-outlined text-choc text-[22px] opacity-0 transition-opacity duration-200 check-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
               <input type="radio" name="tier" value="50000" class="sr-only"/>
               <span class="text-[10px] uppercase tracking-[0.14em] font-semibold text-gold">Tier 03</span>
-              <span class="text-[13px] font-semibold text-ink mt-1">Sourcing Imported Pets</span>
-              <span class="num text-[20px] text-choc-deep mt-2">₦50,000</span>
+              <span class="text-[14px] font-semibold text-ink mt-1 pr-6">Sourcing Imported Pets</span>
+              <span class="num text-[22px] text-choc-deep mt-2">₦50,000</span>
             </label>
+            
           </div>
         </div>
 
@@ -858,14 +865,22 @@ tailwind.config = {
     menuBtn.setAttribute('aria-expanded', 'false');
   }));
 
+  // UPDATED TIER SELECTION LOGIC
   const tierCards = document.querySelectorAll('.tier-card');
   function setActiveTier(card) {
     tierCards.forEach(c => {
-      c.classList.remove('border-choc', 'bg-cream-mid');
-      c.classList.add('border-transparent');
+      c.classList.remove('border-choc', 'bg-white', 'shadow-sm');
+      c.classList.add('border-transparent', 'bg-cream-low');
+      const icon = c.querySelector('.check-icon');
+      if (icon) { icon.classList.remove('opacity-100'); icon.classList.add('opacity-0'); }
     });
-    card.classList.remove('border-transparent');
-    card.classList.add('border-choc', 'bg-cream-mid');
+    
+    card.classList.remove('border-transparent', 'bg-cream-low');
+    card.classList.add('border-choc', 'bg-white', 'shadow-sm');
+    
+    const icon = card.querySelector('.check-icon');
+    if (icon) { icon.classList.remove('opacity-0'); icon.classList.add('opacity-100'); }
+    
     const input = card.querySelector('input[type=radio]');
     if (input) input.checked = true;
   }
@@ -1073,4 +1088,4 @@ tailwind.config = {
 </script>
 
 </body>
-  </html>
+</html>
