@@ -17,6 +17,13 @@
 <!-- SWIPER JS CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <script>
+  // FORCE PAGE TO START AT TOP ON RELOAD (Disables scroll restoration)
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
+</script>
+<script>
 tailwind.config = {
   theme: {
     extend: {
@@ -542,7 +549,6 @@ tailwind.config = {
           </label>
         </div>
 
-        <!-- UPDATED TIER CARDS FOR BETTER VISIBILITY -->
         <div class="flex flex-col gap-4">
           <div class="flex items-center gap-3 pb-2 border-b border-hairline">
             <span class="num text-[20px] text-gold/40 leading-none">03</span>
@@ -1179,4 +1185,4 @@ tailwind.config = {
 </script>
 
 </body>
-          </html>
+  </html>
