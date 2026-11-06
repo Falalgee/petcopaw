@@ -3,16 +3,19 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Petcopaw — The right pet. The right source. The right guidance.</title>
-<meta name="description" content="Petcopaw is an independent pet sourcing consultancy. We help buyers find a source whose experience and specialization fit the breed they want — with decades of industry experience, honest guidance, and a clear process from inquiry to introduction."/>
-<meta property="og:title" content="Petcopaw — Sourcing guidance for the right pet"/>
-<meta property="og:description" content="Independent pet sourcing guidance. The right pet. The right source. The right guidance."/>
+<!-- SEO TITLE & META -->
+<title>Pet Sourcing in Nigeria | Trusted Breeder Guidance | Petcopaw</title>
+<meta name="description" content="Petcopaw is an independent pet sourcing consultancy in Nigeria. We connect you directly to trusted, specialized dog, cat, and bird breeders. Eliminating middlemen for a better, cheaper experience."/>
+<meta property="og:title" content="Pet Sourcing in Nigeria | Trusted Breeder Guidance | Petcopaw"/>
+<meta property="og:description" content="Independent pet sourcing guidance in Nigeria. We eliminate the middleman by connecting you directly to the breeders, making the pet cheaper."/>
 <meta property="og:type" content="website"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..500,0..1,-25..0" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
+<!-- SWIPER JS CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <script>
 tailwind.config = {
   theme: {
@@ -73,7 +76,7 @@ tailwind.config = {
 
   h1, h2, h3, h4 { font-weight: 500; margin: 0; text-wrap: balance; }
   p { margin: 0; text-wrap: pretty; }
-  a { color: inherit; }
+  a { color: inherit; text-decoration: none; }
 
   section[id], [id="top"] { scroll-margin-top: 5rem; }
 
@@ -130,6 +133,11 @@ tailwind.config = {
   .textarea { height: auto; padding: 12px 14px; resize: none; line-height: 1.55; }
   .select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%238a7d78' stroke-width='1.5' d='M1 1l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
 
+  /* Swiper Custom Styles */
+  .swiper-pagination-bullet { background: var(--ink-muted); opacity: 0.3; width: 6px; height: 6px; transition: all 0.3s; }
+  .swiper-pagination-bullet-active { background: var(--choc); opacity: 1; width: 16px; border-radius: 4px; }
+  .swiper-pagination { bottom: 8px !important; }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     html { scroll-behavior: auto; }
@@ -141,9 +149,7 @@ tailwind.config = {
 <header class="fixed top-0 inset-x-0 z-50 bg-cream/90 backdrop-blur-md border-b border-hairline">
   <div class="container h-16 md:h-[72px] flex items-center justify-between gap-4">
     <a href="#top" class="flex items-center gap-2.5 group">
-      <span class="w-8 h-8 rounded-md bg-choc text-gold-soft flex items-center justify-center transition-transform duration-200 group-hover:scale-[1.03]">
-        <span class="material-symbols-outlined text-[18px]">pets</span>
-      </span>
+      <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793945900/petcopaw_xksadv.png" alt="Petcopaw Logo" class="w-9 h-9 object-contain transition-transform duration-200 group-hover:scale-[1.03]"/>
       <div class="flex flex-col leading-none">
         <span class="font-display text-[18px] text-choc-deep tracking-tight">Petcopaw</span>
         <span class="text-[10px] uppercase tracking-[0.16em] text-gold pt-0.5 font-semibold">Sourcing guidance</span>
@@ -183,14 +189,14 @@ tailwind.config = {
 <section class="relative overflow-hidden">
   <div class="container py-16 md:py-24 lg:py-28 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
     <div class="lg:col-span-7 flex flex-col gap-6">
-      <span class="eyebrow">Independent pet sourcing</span>
+      <!-- Removed the eyebrow here -->
       <h1 class="h1">
         The right pet.<br/>
         <span class="italic font-normal text-choc">The right source.</span><br/>
         The right guidance.
       </h1>
       <p class="lede max-w-[540px]">
-        Petcopaw helps you find a source whose experience and specialization fit the breed you want — with decades of industry insight, honest guidance, and a clear process from inquiry to introduction.
+        Petcopaw helps you find the right source for the breed you want. We eliminate the middleman by connecting you directly to trusted breeders, which makes the pet cheaper. Backed by decades of industry insight and honest guidance.
       </p>
       <div class="flex flex-wrap items-center gap-3 pt-2">
         <a href="#intake" class="btn btn-primary btn-lg">
@@ -201,6 +207,7 @@ tailwind.config = {
       </div>
     </div>
 
+    <!-- SLIDER SECTION START -->
     <div class="lg:col-span-5 flex justify-center lg:justify-end">
       <div class="w-full max-w-[340px]">
         <div class="card p-4 shadow-[0_1px_2px_rgba(50,23,15,0.04),0_8px_24px_-12px_rgba(50,23,15,0.10)]">
@@ -208,9 +215,33 @@ tailwind.config = {
             <span class="eyebrow">Sourcing dossier</span>
             <span class="mono text-ink-muted">PCP-2026</span>
           </div>
-          <div class="mt-4 aspect-[4/5] rounded-md bg-cream-low border border-hairline overflow-hidden">
-            <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793888037/IMG-20261105-WA0054_initmq.jpg" alt="Petcopaw sourcing specialist with parrots" class="w-full h-full object-cover" loading="lazy"/>
+          
+          <!-- Swiper Container (No Cropping, Auto-play, Swipeable) -->
+          <div class="mt-4 rounded-md bg-cream-mid border border-hairline overflow-hidden relative">
+            <div class="swiper dossierSwiper w-full h-[340px]">
+              <div class="swiper-wrapper">
+                
+                <!-- Slide 1 -->
+                <div class="swiper-slide flex items-center justify-center p-2">
+                  <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793945361/IMG-20261106-WA0004_ex9xlw.jpg" alt="Imported pet" class="w-full h-full object-contain drop-shadow-md" />
+                </div>
+                
+                <!-- Slide 2 -->
+                <div class="swiper-slide flex items-center justify-center p-2">
+                  <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793945365/E89CBC27-2600-4E76-86F3-FE441292C4A8_ditny1.png" alt="Imported pet" class="w-full h-full object-contain drop-shadow-md" />
+                </div>
+                
+                <!-- Slide 3 -->
+                <div class="swiper-slide flex items-center justify-center p-2">
+                  <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793945364/1793945026773_wjpjmc.jpg" alt="Imported pet" class="w-full h-full object-contain drop-shadow-md" />
+                </div>
+
+              </div>
+              <!-- Pagination Dots -->
+              <div class="swiper-pagination"></div>
+            </div>
           </div>
+
           <dl class="mt-4 flex flex-col gap-2.5 text-[12px]">
             <div class="flex justify-between gap-3">
               <dt class="text-ink-muted">Breed target</dt>
@@ -229,6 +260,8 @@ tailwind.config = {
         <p class="mt-3 text-[12px] text-ink-muted text-center lg:text-left">Every request is documented, from intake to introduction.</p>
       </div>
     </div>
+    <!-- SLIDER SECTION END -->
+
   </div>
 </section>
 
@@ -352,19 +385,22 @@ tailwind.config = {
   <div class="container grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
     <div class="lg:col-span-5 flex justify-center order-last lg:order-first">
       <div class="w-full max-w-[360px] aspect-[4/5] rounded-lg overflow-hidden shadow-xl border border-cream/10">
-        <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793888037/IMG-20261105-WA0054_initmq.jpg" alt="Petcopaw sourcing specialist holding parrots, demonstrating hands-on industry experience" class="w-full h-full object-cover" loading="lazy"/>
+        <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793945730/IMG-20261106-WA0003_tih7za.jpg" alt="Petcopaw sourcing specialist" class="w-full h-full object-contain" loading="lazy"/>
       </div>
     </div>
     <div class="lg:col-span-7 flex flex-col gap-5">
       <span class="eyebrow !text-gold-soft">Why Petcopaw</span>
       <h2 class="h2 !text-cream">Decades of experience, on both sides of the transaction.</h2>
       <p class="body text-cream/80 text-[16px] leading-[1.7]">We understand that the right match is not simply whoever says they have a pet available. Breed specialization, clear expectations, honest communication, and follow-through matter.</p>
-      <p class="body text-cream/80 text-[16px] leading-[1.7]">Petcopaw brings experience and guidance to a process that can otherwise leave buyers guessing.</p>
+      <!-- ADDED THE MIDDLEMAN VALUE PROP HERE FOR EMPHASIS -->
+      <p class="body text-cream text-[16px] leading-[1.7] font-semibold">
+        We eliminate the middleman by connecting you directly to the breeders, which makes the pet cheaper.
+      </p>
       <blockquote class="mt-2 pl-5 border-l-2 border-gold-soft font-display text-[20px] md:text-[22px] italic text-gold-soft leading-[1.35]">The right pet. The right source. The right guidance.</blockquote>
       <div class="grid grid-cols-2 gap-x-8 gap-y-6 pt-4 mt-2 border-t border-cream/15">
         <div class="flex flex-col gap-2">
           <span class="num text-[32px] md:text-[36px] text-gold-soft leading-none">Zero</span>
-          <span class="text-[12px] text-cream/60 mt-1">Markup on the pet</span>
+          <span class="text-[12px] text-cream/60 mt-1">Middlemen</span>
         </div>
         <div class="flex flex-col gap-2">
           <span class="num text-[32px] md:text-[36px] text-gold-soft leading-none">Direct</span>
@@ -600,6 +636,7 @@ tailwind.config = {
   </div>
 </section>
 
+<!-- UPDATED FAQ SECTION (9 Questions) -->
 <section id="faq" class="section border-t border-hairline">
   <div class="container">
     <div class="max-w-[720px] mx-auto flex flex-col gap-10">
@@ -608,41 +645,88 @@ tailwind.config = {
         <h2 class="h2">Clear answers, upfront.</h2>
       </div>
       <div class="border-t border-hairline">
+        
+        <!-- Q1 -->
         <details class="faq-item group border-b border-hairline">
           <summary class="cursor-pointer flex items-center justify-between gap-4 py-5 list-none">
-            <h3 class="text-[15px] md:text-[16px] font-semibold text-choc-deep">What does Petcopaw do?</h3>
+            <h3 class="text-[15px] md:text-[16px] font-semibold text-choc-deep">What is Petcopaw, and how does your pet sourcing service work in Nigeria?</h3>
             <span class="material-symbols-outlined text-gold text-[18px] shrink-0 group-open:rotate-180 transition-transform duration-200">expand_more</span>
           </summary>
-          <p class="pb-5 body text-ink-soft max-w-[640px]">Petcopaw is an independent pet sourcing consultancy. We listen to what you're looking for, use our industry experience to understand the request, and help connect you with an independent breeder or seller whose experience and specialization are better suited to that specific breed. We do not breed, sell, or own animals.</p>
+          <p class="pb-5 body text-ink-soft max-w-[640px]">Petcopaw is an independent pet sourcing consultancy in Nigeria. We help individuals looking for dogs, cats, birds, and other companion animals identify suitable breeders or independent sellers based on the breed they want and the source's experience and specialization. With decades of experience in the pet industry and established relationships within the industry, we provide sourcing guidance, recommendations, and direct introductions. Petcopaw does not breed, sell, or own animals.</p>
         </details>
+
+        <!-- Q2 -->
         <details class="faq-item group border-b border-hairline">
           <summary class="cursor-pointer flex items-center justify-between gap-4 py-5 list-none">
-            <h3 class="text-[15px] md:text-[16px] font-semibold text-choc-deep">How does the process work?</h3>
+            <h3 class="text-[15px] md:text-[16px] font-semibold text-choc-deep">Can Petcopaw help me find a reputable dog or cat breeder in Nigeria?</h3>
             <span class="material-symbols-outlined text-gold text-[18px] shrink-0 group-open:rotate-180 transition-transform duration-200">expand_more</span>
           </summary>
-          <p class="pb-5 body text-ink-soft max-w-[640px]">Four steps: (1) you tell us what you want through the inquiry form; (2) we assess the request using our industry knowledge and relationships; (3) if we can recommend a suitable breeder for the requested breed, we provide the recommendation and contact information; and (4) you contact the breeder and handle any further discussions and purchase directly with that independent breeder or seller.</p>
+          <p class="pb-5 body text-ink-soft max-w-[640px]">Yes. Petcopaw helps people looking for specific dog and cat breeds connect with independent breeders whose experience and specialization are relevant to their requirements. Rather than simply directing you to whoever has an animal available, we consider the breed, your expectations, and the suitability of the potential source before making a recommendation.</p>
         </details>
+
+        <!-- Q3 -->
         <details class="faq-item group border-b border-hairline">
           <summary class="cursor-pointer flex items-center justify-between gap-4 py-5 list-none">
-            <h3 class="text-[15px] md:text-[16px] font-semibold text-choc-deep">Can you source any breed?</h3>
+            <h3 class="text-[15px] md:text-[16px] font-semibold text-choc-deep">Does Petcopaw sell pets or operate as a pet shop?</h3>
             <span class="material-symbols-outlined text-gold text-[18px] shrink-0 group-open:rotate-180 transition-transform duration-200">expand_more</span>
           </summary>
-          <p class="pb-5 body text-ink-soft max-w-[640px]">Not always. We will only make a recommendation when we can identify a suitable source whose experience and specialization genuinely fit the request. If we cannot recommend a suitable breeder for your requested breed, you receive a full refund of the Petcopaw service fee.</p>
+          <p class="pb-5 body text-ink-soft max-w-[640px]">No. Petcopaw is not a pet shop, online pet store, or animal marketplace. We do not own, breed, advertise, or sell animals. We provide independent pet sourcing guidance and introductions to suitable breeders or sellers. Buyers discuss availability, prices, payment, and purchase arrangements directly with the independent breeder or seller.</p>
         </details>
+
+        <!-- Q4 -->
         <details class="faq-item group border-b border-hairline">
           <summary class="cursor-pointer flex items-center justify-between gap-4 py-5 list-none">
-            <h3 class="text-[15px] md:text-[16px] font-semibold text-choc-deep">How long can it take?</h3>
+            <h3 class="text-[15px] md:text-[16px] font-semibold text-choc-deep">How does Petcopaw identify suitable breeders and pet sources?</h3>
             <span class="material-symbols-outlined text-gold text-[18px] shrink-0 group-open:rotate-180 transition-transform duration-200">expand_more</span>
           </summary>
-          <p class="pb-5 body text-ink-soft max-w-[640px]">Timing depends on the breed and your specifications. Some requests can be matched quickly; others require waiting for an appropriate litter or import window. Your inquiry includes a preferred timing, and we will be honest about what is realistic before making a recommendation.</p>
+          <p class="pb-5 body text-ink-soft max-w-[640px]">We consider the specific breed requested, the source's relevant experience, specialization, industry relationships, and suitability for the buyer's requirements. Our recommendations are informed by our industry experience and knowledge. They are not formal certifications, veterinary inspections, or guarantees of a breeder's conduct or an animal's health.</p>
         </details>
+
+        <!-- Q5 -->
+        <details class="faq-item group border-b border-hairline">
+          <summary class="cursor-pointer flex items-center justify-between gap-4 py-5 list-none">
+            <h3 class="text-[15px] md:text-[16px] font-semibold text-choc-deep">Can Petcopaw source any dog breed, cat breed, or bird?</h3>
+            <span class="material-symbols-outlined text-gold text-[18px] shrink-0 group-open:rotate-180 transition-transform duration-200">expand_more</span>
+          </summary>
+          <p class="pb-5 body text-ink-soft max-w-[640px]">Not necessarily. Our ability to make a recommendation depends on the breed, the buyer's specifications, and whether we can identify a suitable source. We do not recommend a seller simply because an animal is available. If we cannot make a suitable recommendation, our refund policy applies.</p>
+        </details>
+
+        <!-- Q6 -->
+        <details class="faq-item group border-b border-hairline">
+          <summary class="cursor-pointer flex items-center justify-between gap-4 py-5 list-none">
+            <h3 class="text-[15px] md:text-[16px] font-semibold text-choc-deep">Does Petcopaw provide pet sourcing services outside Lagos?</h3>
+            <span class="material-symbols-outlined text-gold text-[18px] shrink-0 group-open:rotate-180 transition-transform duration-200">expand_more</span>
+          </summary>
+          <p class="pb-5 body text-ink-soft max-w-[640px]">Petcopaw considers sourcing requests from customers across Nigeria. Your location, preferred breed, timing, and specific requirements help us assess the request and determine whether we can recommend an appropriate source. Availability depends on the breed and our ability to identify a suitable independent breeder or seller.</p>
+        </details>
+
+        <!-- Q7 -->
+        <details class="faq-item group border-b border-hairline">
+          <summary class="cursor-pointer flex items-center justify-between gap-4 py-5 list-none">
+            <h3 class="text-[15px] md:text-[16px] font-semibold text-choc-deep">How much does Petcopaw charge for pet sourcing in Nigeria?</h3>
+            <span class="material-symbols-outlined text-gold text-[18px] shrink-0 group-open:rotate-180 transition-transform duration-200">expand_more</span>
+          </summary>
+          <p class="pb-5 body text-ink-soft max-w-[640px]">Petcopaw charges a transparent consultancy and sourcing fee based on the type of sourcing assistance requested. Our current service fees are ₦25,000, ₦35,000, and ₦50,000 depending on the selected sourcing tier. These fees cover our time, industry experience, guidance, sourcing assistance, and recommendation. They are separate from the animal's purchase price, which is paid directly to the independent breeder or seller.</p>
+        </details>
+
+        <!-- Q8 -->
+        <details class="faq-item group border-b border-hairline">
+          <summary class="cursor-pointer flex items-center justify-between gap-4 py-5 list-none">
+            <h3 class="text-[15px] md:text-[16px] font-semibold text-choc-deep">How long does it take Petcopaw to find a pet for me?</h3>
+            <span class="material-symbols-outlined text-gold text-[18px] shrink-0 group-open:rotate-180 transition-transform duration-200">expand_more</span>
+          </summary>
+          <p class="pb-5 body text-ink-soft max-w-[640px]">Once payment is confirmed, Petcopaw typically completes the sourcing process and provides a suitable breeder or seller recommendation within 1-2 hours. After the introduction, the buyer communicates directly with the breeder or seller regarding availability, pricing, payment, delivery, and other purchase arrangements. Those arrangements and their timelines are outside Petcopaw's control.</p>
+        </details>
+
+        <!-- Q9 -->
         <details class="faq-item group">
           <summary class="cursor-pointer flex items-center justify-between gap-4 py-5 list-none">
-            <h3 class="text-[15px] md:text-[16px] font-semibold text-choc-deep">What does the service fee cover?</h3>
+            <h3 class="text-[15px] md:text-[16px] font-semibold text-choc-deep">What happens if Petcopaw cannot find a suitable breeder?</h3>
             <span class="material-symbols-outlined text-gold text-[18px] shrink-0 group-open:rotate-180 transition-transform duration-200">expand_more</span>
           </summary>
-          <p class="pb-5 body text-ink-soft max-w-[640px]">The fee covers Petcopaw's time, industry experience, guidance, sourcing assistance, and recommendation. It is separate from the pet's purchase price. It is not payment for the animal and does not guarantee that a purchase will occur. The pet's purchase price and any related costs are agreed upon and paid directly to the independent breeder or seller.</p>
+          <p class="pb-5 body text-ink-soft max-w-[640px]">If Petcopaw cannot identify and recommend a suitable breeder or seller for your requested breed, you receive a full refund of the Petcopaw service fee. Once a suitable recommendation and contact information have been provided, the sourcing service is considered fulfilled under our refund policy.</p>
         </details>
+        
       </div>
     </div>
   </div>
@@ -662,6 +746,7 @@ tailwind.config = {
           </a>
         </div>
         <div class="lg:col-span-5 flex flex-col gap-2">
+          <!-- CLICKABLE INSTAGRAM LINK -->
           <a href="https://instagram.com/petcopaw" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-md hover:bg-white/5 transition-colors">
             <span class="w-9 h-9 rounded-md bg-gold-soft text-gold-ink flex items-center justify-center shrink-0">
               <span class="material-symbols-outlined text-[18px]">photo_camera</span>
@@ -671,6 +756,7 @@ tailwind.config = {
               <span class="text-[13px] text-cream">@petcopaw</span>
             </div>
           </a>
+          <!-- CLICKABLE EMAIL LINK -->
           <a href="mailto:sales@petcopaw.com" class="flex items-center gap-3 p-3 rounded-md hover:bg-white/5 transition-colors">
             <span class="w-9 h-9 rounded-md bg-gold-soft text-gold-ink flex items-center justify-center shrink-0">
               <span class="material-symbols-outlined text-[18px]">mail</span>
@@ -680,6 +766,7 @@ tailwind.config = {
               <span class="text-[13px] text-cream">sales@petcopaw.com</span>
             </div>
           </a>
+          <!-- CLICKABLE WHATSAPP LINK -->
           <a href="https://wa.me/2348136394126" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-md hover:bg-white/5 transition-colors">
             <span class="w-9 h-9 rounded-md bg-gold-soft text-gold-ink flex items-center justify-center shrink-0">
               <span class="material-symbols-outlined text-[18px]">chat</span>
@@ -702,9 +789,7 @@ tailwind.config = {
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10">
       <div class="md:col-span-2 flex flex-col gap-3">
         <div class="flex items-center gap-2.5">
-          <span class="w-8 h-8 rounded-md bg-choc text-gold-soft flex items-center justify-center">
-            <span class="material-symbols-outlined text-[16px]">pets</span>
-          </span>
+          <img src="https://res.cloudinary.com/dvpt87rho/image/upload/v1793945900/petcopaw_xksadv.png" alt="Petcopaw Logo" class="w-8 h-8 object-contain"/>
           <span class="font-display text-[16px] text-cream">Petcopaw</span>
         </div>
         <p class="text-[12px] leading-[1.65] max-w-[340px] text-cream/60">Independent pet sourcing consultancy. The right pet. The right source. The right guidance.</p>
@@ -718,6 +803,7 @@ tailwind.config = {
       </div>
       <div class="flex flex-col gap-2">
         <span class="text-[10px] uppercase tracking-[0.14em] font-semibold text-gold-soft mb-1">Contact</span>
+        <!-- CLICKABLE FOOTER LINKS -->
         <a href="https://instagram.com/petcopaw" target="_blank" rel="noopener noreferrer" class="text-[12px] text-cream/60 hover:text-cream transition-colors">Instagram @petcopaw</a>
         <a href="mailto:sales@petcopaw.com" class="text-[12px] text-cream/60 hover:text-cream transition-colors">sales@petcopaw.com</a>
         <a href="https://wa.me/2348136394126" target="_blank" rel="noopener noreferrer" class="text-[12px] text-cream/60 hover:text-cream transition-colors">WhatsApp</a>
@@ -731,10 +817,32 @@ tailwind.config = {
   </div>
 </footer>
 
+<!-- SWIPER JS SCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 <script>
+  // Initialize the Swiper Slider in the Hero Section
+  const dossierSwiper = new Swiper('.dossierSwiper', {
+    loop: true,
+    autoplay: {
+      delay: 3000, // Changes image every 3 seconds
+      disableOnInteraction: false, // Keeps auto-playing even if user swipes
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true
+    },
+    speed: 800, // Smooth transition speed
+  });
+
+  // Payment & Form Logic
   const CONFIG = {
     WEB3FORMS_ACCESS_KEY: '50347ece-4592-435a-bf38-aecfcb378478',
-    // LIVE KEY ACTIVE
+    // LIVE PAYSTACK KEY ACTIVE
     PAYSTACK_PUBLIC_KEY: 'pk_live_ab2c6a86adfe36894b11f4f5caca6cb0492bee26',
     DEMO_MODE: false
   };
@@ -965,4 +1073,4 @@ tailwind.config = {
 </script>
 
 </body>
-</html>
+  </html>
